@@ -1,10 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>Espadas Intergaláticas</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css"/>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css"/>
 </head>
-<body>
+<body class="min-h-screen bg-gradient-to-br from-indigo-950 via-purple-950 to-black text-white">
+
+<!-- Header -->
+<div th:if="${adventurer}" th:replace="~{/partials/header :: header(${adventurer})}"></div>
+
+<!-- Hero -->
+<section class="relative pt-16 pb-24 overflow-hidden">
+    <div class="absolute inset-0 opacity-30 pointer-events-none" aria-hidden="true">
+        <div class="absolute -top-10 -left-10 w-72 h-72 bg-fuchsia-600/30 blur-3xl rounded-full"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-indigo-600/20 blur-3xl rounded-full"></div>
+    </div>
+    <div class="container mx-auto max-w-6xl px-4 relative z-10">
+        <div class="text-center">
+            <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-fuchsia-300 via-blue-300 to-indigo-200 bg-clip-text text-transparent drop-shadow">
+                Mercado Galáctico de Espadas
+            </h1>
+            <p class="mt-6 text-lg md:text-xl text-indigo-100/90 max-w-3xl mx-auto">
+                Forje sua lenda entre as estrelas. Descubra lâminas raras, negocie com aventureiros de toda a galáxia
+                e equipe-se para as maiores batalhas do cosmos.
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                <a th:href="@{/swords}" class="btn btn-lg bg-gradient-to-r from-purple-700 via-blue-700 to-indigo-700 text-white border-none shadow-lg hover:scale-105 transition-transform">
+                    Explorar o Mercado
+                </a>
+                <a th:href="@{/adventurer/inventory}" class="btn btn-lg btn-outline border-indigo-400 text-indigo-200 hover:bg-indigo-700/30 hover:border-indigo-300">
+                    Meu Inventário
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section class="py-16">
+    <div class="container mx-auto max-w-6xl px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Por que o Mercado Galáctico?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="card bg-gradient-to-tr from-blue-900/60 via-indigo-800/60 to-purple-900/60 border border-indigo-600/30 shadow-xl p-6">
+                <div class="text-fuchsia-300 mb-3">🌌</div>
+                <h3 class="text-xl font-semibold mb-2">Raridades Cósmicas</h3>
+                <p class="text-indigo-100/90">Colecione espadas lendárias forjadas em nebulosas distantes e núcleos de estrelas.</p>
+            </div>
+            <div class="card bg-gradient-to-tr from-blue-900/60 via-indigo-800/60 to-purple-900/60 border border-indigo-600/30 shadow-xl p-6">
+                <div class="text-fuchsia-300 mb-3">🛠️</div>
+                <h3 class="text-xl font-semibold mb-2">Forja Alienígena</h3>
+                <p class="text-indigo-100/90">Tecnologias avançadas para o melhor equilíbrio entre dano, raridade e preço.</p>
+            </div>
+            <div class="card bg-gradient-to-tr from-blue-900/60 via-indigo-800/60 to-purple-900/60 border border-indigo-600/30 shadow-xl p-6">
+                <div class="text-fuchsia-300 mb-3">🛒</div>
+                <h3 class="text-xl font-semibold mb-2">Mercado em Tempo Real</h3>
+                <p class="text-indigo-100/90">Negocie com aventureiros, compre e venda com alguns cliques.</p>
+            </div>
+            <div class="card bg-gradient-to-tr from-blue-900/60 via-indigo-800/60 to-purple-900/60 border border-indigo-600/30 shadow-xl p-6">
+                <div class="text-fuchsia-300 mb-3">🛡️</div>
+                <h3 class="text-xl font-semibold mb-2">Segurança da Guilda</h3>
+                <p class="text-indigo-100/90">Proteção de transações com selos da Guilda dos Aventureiros.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How it works -->
+<section class="py-16">
+    <div class="container mx-auto max-w-5xl px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Como funciona?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="card bg-gradient-to-tr from-indigo-900/60 to-purple-900/60 border border-indigo-600/30 p-6 text-center">
+                <div class="text-2xl font-bold text-fuchsia-300">1</div>
+                <h4 class="mt-2 font-semibold">Explore</h4>
+                <p class="text-sm text-indigo-100/90">Vasculhe o Mercado por lâminas únicas.</p>
+            </div>
+            <div class="card bg-gradient-to-tr from-indigo-900/60 to-purple-900/60 border border-indigo-600/30 p-6 text-center">
+                <div class="text-2xl font-bold text-fuchsia-300">2</div>
+                <h4 class="mt-2 font-semibold">Compre</h4>
+                <p class="text-sm text-indigo-100/90">Use seu ouro para adquirir a espada dos sonhos.</p>
+            </div>
+            <div class="card bg-gradient-to-tr from-indigo-900/60 to-purple-900/60 border border-indigo-600/30 p-6 text-center">
+                <div class="text-2xl font-bold text-fuchsia-300">3</div>
+                <h4 class="mt-2 font-semibold">Equipe</h4>
+                <p class="text-sm text-indigo-100/90">Fortaleça seu personagem para próximas aventuras.</p>
+            </div>
+            <div class="card bg-gradient-to-tr from-indigo-900/60 to-purple-900/60 border border-indigo-600/30 p-6 text-center">
+                <div class="text-2xl font-bold text-fuchsia-300">4</div>
+                <h4 class="mt-2 font-semibold">Venda</h4>
+                <p class="text-sm text-indigo-100/90">Negocie suas lâminas e reinvista em novas raridades.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20">
+    <div class="container mx-auto max-w-4xl px-4 text-center">
+        <h2 class="text-4xl font-extrabold mb-4">Pronto para começar sua saga?</h2>
+        <p class="text-indigo-100/90 mb-8">Entre no mercado, encontre sua espada e escreva seu destino entre as estrelas.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a th:href="@{/swords}" class="btn btn-lg bg-gradient-to-r from-purple-700 via-blue-700 to-indigo-700 text-white border-none shadow-lg hover:scale-105 transition-transform">Ir ao Mercado</a>
+            <a th:href="@{/adventurer/inventory}" class="btn btn-lg btn-outline border-indigo-400 text-indigo-200 hover:bg-indigo-700/30 hover:border-indigo-300">Ver meu Inventário</a>
+        </div>
+    </div>
+</section>
+
+<footer class="py-8 border-t border-white/10 text-center text-sm text-indigo-200/70">
+    <div class="container mx-auto px-4">© <span th:text="${#dates.year(#dates.createNow())}"></span> Galactic Swords — Forjado entre nebulosas.</div>
+</footer>
 
 </body>
 </html>

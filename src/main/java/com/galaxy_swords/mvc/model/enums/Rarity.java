@@ -1,4 +1,4 @@
-package com.galaxy_swords.mvc.model;
+package com.galaxy_swords.mvc.model.enums;
 
 public enum Rarity {
     COMUM("Comum"),
@@ -15,8 +15,12 @@ public enum Rarity {
         this.label = label;
     }
 
-    public String getLabel(String label) {
+    @Override
+    public String toString() {
         return label;
     }
 
+    public String getLabel() {
+        return this.label;
+    }
 }

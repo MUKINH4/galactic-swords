@@ -1,0 +1,49 @@
+<div th:fragment="header(adventurer)" th:object="${adventurer}">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    </head>
+    <header>
+        <nav>
+            <div th:if="${adventurer == null}" class="flex items-center justify-between p-4 bg-gray-800 text-white">
+                <div>
+                    <a th:href="@{/}">Galactic Swords</a>
+                </div>
+                <div>
+                    <a th:href="@{/login}" class="flex items-center space-x-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
+                    </svg>
+                        Login
+                    </a>
+                </div>
+            </div>
+            <div th:if="${adventurer}" class="flex items-center justify-between p-4 bg-gray-800 text-white">
+                <div>
+                    <a th:href="@{/}">Galactic Swords</a>
+                </div>
+                <div>
+                    <a th:href="@{/swords}" class="relative inline-flex items-center px-3 py-1 rounded-lg text-indigo-200/90 transition-all duration-300 hover:text-white hover:bg-indigo-600/20 hover:shadow-[0_0_15px_rgba(99,102,241,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 after:absolute after:inset-x-2 after:-bottom-1 after:h-0.5 after:bg-gradient-to-r after:from-fuchsia-500/0 after:via-fuchsia-400/80 after:to-indigo-400/0 after:opacity-0 hover:after:opacity-100 after:transition-opacity">Mercado</a>
+                    <a th:href="@{/adventurer/inventory}" class="relative inline-flex items-center px-3 py-1 rounded-lg text-indigo-200/90 transition-all duration-300 hover:text-white hover:bg-indigo-600/20 hover:shadow-[0_0_15px_rgba(99,102,241,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 after:absolute after:inset-x-2 after:-bottom-1 after:h-0.5 after:bg-gradient-to-r after:from-fuchsia-500/0 after:via-fuchsia-400/80 after:to-indigo-400/0 after:opacity-0 hover:after:opacity-100 after:transition-opacity">Inventário</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <span th:text="*{gold}"></span>
+                    </div>
+                    <a th:href="@{/adventurer}">Perfil</a>
+                    <div class="flex items-center">
+                        <a th:href="@{/logout}">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+</div>

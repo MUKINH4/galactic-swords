@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Ouro</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div th:insert="~{/partials/header :: header(${adventurer})}"></div>
+    <section class="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-black flex flex-col items-center justify-center">
+        <div class="w-full max-w-md mx-auto bg-gradient-to-tr from-blue-900 via-indigo-700 to-purple-800 rounded-xl shadow-2xl p-8 border border-white/20 mt-10">
+            <h2 class="text-3xl font-bold text-white text-center mb-6 drop-shadow-lg">Adicionar Ouro</h2>
+            <form th:action="@{/adventurer/addGold}" method="post">
+                <div class="mb-4">
+                    <label for="amount" class="block text-white mb-2 text-lg">Quantidade de Ouro:</label>
+                    <input type="number" id="amount" name="amount" min="1" required class="w-full px-3 py-2 rounded-lg border border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-black/40 text-yellow-300 font-bold text-xl shadow-lg placeholder:text-yellow-100" placeholder="Digite a quantidade...">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-purple-700 via-blue-700 to-indigo-700 text-white font-bold py-2 rounded-lg shadow-lg hover:scale-105 transition-transform hover:from-purple-800 hover:via-blue-800 hover:to-indigo-800 duration-300">Adicionar Ouro</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

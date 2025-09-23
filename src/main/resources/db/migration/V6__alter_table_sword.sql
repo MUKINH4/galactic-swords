@@ -1,0 +1,2 @@
+update sword
+    set image_url = 'https://fiapcom-my.sharepoint.com/my?id=%2Fpersonal%2Frm556731%5Ffiap%5Fcom%5Fbr%2FDocuments%2FImagesGalacticSwords%2Fandromeda%5Fsword%2Epng&parent=%2Fpersonal%2Frm556731%5Ffiap%5Fcom%5Fbr%2FDocuments%2FImagesGalacticSwords&ga=1' where id = 1;

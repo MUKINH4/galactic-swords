@@ -1,0 +1,5 @@
+ALTER TABLE sword
+    ADD price DOUBLE PRECISION;
+
+ALTER TABLE sword
+    ALTER COLUMN price SET NOT NULL;

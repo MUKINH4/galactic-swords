@@ -1,0 +1,49 @@
+<div th:fragment="swordList">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div th:each="sword : ${swords}"
+             th:if="${sword.owner == null}"
+             class="card bg-gradient-to-tr from-blue-900 via-indigo-700 to-purple-800 text-white p-6 rounded-xl shadow-xl border border-indigo-500/40 flex flex-col">
+
+            <div th:if="${sword.imageUrl}" class="flex justify-center mb-4">
+                <img th:src="${sword.imageUrl}" th:alt="${'Imagem da espada ' + sword.name}"
+                     class="h-40 w-auto rounded-lg shadow-lg border-2 border-indigo-500/40"/>
+            </div>
+
+            <h2 th:text="${sword.name}" class="text-2xl font-bold text-purple-300 mb-2 text-center"></h2>
+            <p th:text="${sword.description}" class="mb-4 text-blue-200 italic text-center"></p>
+
+            <div class="flex flex-wrap justify-center gap-2 mb-2">
+                <span th:text="'Dano: ' + ${sword.damage}"
+                      class="px-3 py-1 rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 text-white font-semibold shadow border border-white/10"></span>
+                <span th:text="${sword.rarity}"
+                      class="px-3 py-1 rounded-full bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 text-white font-bold shadow border border-white/10">Raridade</span>
+                <span th:text="'Preço: $' + ${sword.price}"
+                      class="bg-gray-200 px-3 py-1 rounded-full text-black font-bold shadow border border-white/10"></span>
+            </div>
+
+            <div th:if="${sword.characteristics}" class="mb-2">
+                <h3 class="text-sm text-white font-semibold mb-1">Características:</h3>
+                <ul>
+                    <li th:each="car : ${sword.characteristics}" th:text="${car}"
+                        class="text-xs text-blue-100 ml-4 list-disc"></li>
+                </ul>
+            </div>
+
+            <div th:if="${sword.owner}" class="mb-2 text-center">
+                <span class="text-xs text-white/80">Dono: <span th:text="${sword.owner.nome}"
+                                                                class="font-bold text-blue-300"></span></span>
+            </div>
+
+            <hr class="border-t border-white/20 mb-4"/>
+
+            <form th:action="@{/swords/buy}" method="post">
+                <input type="hidden" name="swordId" th:value="${sword.id}"/>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <button type="submit"
+                        class="btn btn-primary w-full bg-gradient-to-r from-purple-700 via-blue-700 to-indigo-700 text-white font-bold py-2 rounded-lg shadow-lg hover:scale-105 transition-transform">
+                    Comprar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

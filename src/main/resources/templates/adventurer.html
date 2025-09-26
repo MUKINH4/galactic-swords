@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Meu Perfil</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css"/>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-    <div th:insert="~{/partials/header :: header(${adventurer})}"></div>
+    <div th:replace="~{partials/header :: header(${adventurer})}"></div>
     <section class="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-black flex flex-col items-center justify-center">
         <div th:object="${adventurer}" class="mt-10 w-full max-w-md mx-auto bg-gradient-to-tr from-blue-900 via-indigo-700 to-purple-800 rounded-xl shadow-2xl p-8 border border-white/20">
-            <img th:src="*{picture}" alt="Adventurer Image"/>
+            <div class="w-32 h-32 mx-auto rounded-xl overflow-hidden">
+                <img class="m-auto" th:src="*{picture}" alt="Adventurer Image"/>
+            </div>
             <h1 th:text="*{nome}" class="text-3xl font-bold text-white text-center mb-2 drop-shadow-lg"></h1>
             <h1 th:text="*{email}" class="text-lg text-blue-200 text-center mb-4"></h1>
             <h2 th:text="'Gold: ' + *{gold}" class="text-2xl font-semibold text-yellow-300 text-center mb-6"></h2>

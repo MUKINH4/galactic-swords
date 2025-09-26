@@ -8,12 +8,10 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 @RequestMapping("/swords")
@@ -29,6 +27,8 @@ public class SwordController {
 
     @GetMapping
     public String index(Model model, @AuthenticationPrincipal OAuth2User principal) {
+        // Garantir que o usuário seja salvo no banco de dados
+        adventurerService.save(principal);
         Adventurer adventurer = adventurerService.findByEmail(principal.getAttribute("email"));
         model.addAttribute("adventurer", adventurer);
         List<Sword> swords = swordService.listarEspadas();
@@ -47,5 +47,15 @@ public class SwordController {
         return "redirect:/swords";
     }
 
+    @PostMapping("/sell")
+    public String sellSword(@RequestParam Long swordId, RedirectAttributes redirect, @AuthenticationPrincipal OAuth2User principal) {
+        try {
+            swordService.sellSword(swordId, principal.getAttribute("email"));
+            redirect.addFlashAttribute("successMessage", "Espada vendida com sucesso!");
+        } catch (IllegalStateException | IllegalArgumentException e) {
+            redirect.addFlashAttribute("errorMessage", e.getMessage());
+        }
+        return "redirect:/adventurer/inventory";
+    }
 
 }

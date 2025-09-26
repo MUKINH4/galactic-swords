@@ -58,4 +58,35 @@ public class SwordService {
         adventurerService.save(adventurer);
         logger.info("{} comprou a espada '{}' por {} gold.", adventurer.getEmail(), sword.getName(), price);
     }
+
+    @Transactional
+    public void sellSword(Long swordId, String sellerEmail) {
+        Sword sword = swordRepository.findById(swordId)
+                .orElseThrow(() -> new IllegalArgumentException("Espada não encontrada: id=" + swordId));
+        Adventurer adventurer = adventurerService.findByEmail(sellerEmail);
+        if (adventurer == null) {
+            throw new IllegalArgumentException("Adventurer não encontrado: email=" + sellerEmail);
+        }
+        processSale(sword, adventurer);
+    }
+
+    private void processSale(Sword sword, Adventurer adventurer) {
+        if (sword.getOwner() == null || !sword.getOwner().equals(adventurer)) {
+            throw new IllegalStateException("Você não possui esta espada para vender.");
+        }
+        
+        double sellPrice = sword.getPrice() * 0.8;
+        
+        sword.setOwner(null);
+        if (adventurer.getSwords() != null) {
+            adventurer.getSwords().remove(sword);
+        }
+        
+        adventurer.setGold(adventurer.getGold() + sellPrice);
+        
+        swordRepository.save(sword);
+        adventurerService.save(adventurer);
+        
+        logger.info("{} vendeu a espada '{}' por {} gold.", adventurer.getEmail(), sword.getName(), sellPrice);
+    }
 }

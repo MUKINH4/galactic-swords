@@ -20,6 +20,7 @@ public class HomeController {
     @GetMapping("/")
     public String index(Model model, @AuthenticationPrincipal OAuth2User principal) {
         if (principal != null) {
+            adventurerService.save(principal);
             Adventurer adventurer = adventurerService.findByEmail(principal.getAttribute("email"));
             model.addAttribute("adventurer", adventurer);
         }

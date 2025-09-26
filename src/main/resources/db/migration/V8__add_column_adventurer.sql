@@ -1,2 +1,2 @@
 alter table adventurer
-    add column picture varchar(2550);
+    add column picture_url varchar(2550);

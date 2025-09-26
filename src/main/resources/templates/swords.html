@@ -8,14 +8,14 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<div th:replace="~{/partials/header :: header(${adventurer})}"></div>
+<div th:replace="~{partials/header :: header(${adventurer})}"></div>
 <section class="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-black flex flex-col items-center">
 
     <div class="w-full max-w-5xl mx-auto mt-10">
         <h1 class="text-4xl font-extrabold text-white text-center mb-8 drop-shadow-lg">Mercado Galáctico de Espadas</h1>
-        <div th:if="${errorMessage}" th:text="${errorMessage}" class="alert alert-success text-center my-3"></div>
+        <div th:if="${errorMessage}" th:text="${errorMessage}" class="alert alert-error text-center my-3"></div>
         <div th:if="${successMessage}" class="alert alert-success text-center my-3" th:text="${successMessage}"></div>
-        <div th:replace="~{/partials/sword-list :: swordList}"></div>
+        <div th:replace="~{partials/sword-list :: swordList}"></div>
     </div>
 </section>
 </body>

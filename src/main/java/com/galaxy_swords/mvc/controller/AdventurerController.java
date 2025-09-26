@@ -2,7 +2,6 @@ package com.galaxy_swords.mvc.controller;
 
 import com.galaxy_swords.mvc.model.Adventurer;
 import com.galaxy_swords.mvc.model.Sword;
-import com.galaxy_swords.mvc.repository.AdventurerRepository;
 import com.galaxy_swords.mvc.service.AdventurerService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;

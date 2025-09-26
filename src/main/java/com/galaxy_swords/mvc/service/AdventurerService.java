@@ -24,19 +24,43 @@ public class AdventurerService {
         this.adventurerRepository = adventurerRepository;
     }
 
+    @Transactional
     public Adventurer save(OAuth2User principal) {
         String email = principal.getAttribute("email");
+        String name = principal.getAttribute("name");
+        String picture = principal.getAttribute("picture");
+        
+        logger.info("Tentando salvar usuário OAuth2 - Email: {}, Nome: {}", email, name);
+        
         if (email == null || email.isEmpty()) {
-            logger.error("OAuth2User principal does not contain an email attribute.");
+            logger.error("OAuth2User principal não contém um atributo email válido.");
             return null;
         }
+        
         Adventurer adventurer = adventurerRepository.findByEmail(email);
         if (adventurer == null) {
             adventurer = new Adventurer(principal);
-            adventurerRepository.save(adventurer);
-            logger.info("Novo Adventurer salvo: {}", email);
+            adventurer = adventurerRepository.save(adventurer);
+            logger.info("Novo Adventurer criado e salvo com sucesso - ID: {}, Email: {}, Nome: {}", 
+                       adventurer.getId(), email, name);
         } else {
-            logger.info("Adventurer já existe: {}", email);
+            // Atualizar informações se necessário
+            boolean updated = false;
+            if (name != null && !name.equals(adventurer.getNome())) {
+                adventurer.setNome(name);
+                updated = true;
+            }
+            if (picture != null && !picture.equals(adventurer.getPicture())) {
+                adventurer.setPicture(picture);
+                updated = true;
+            }
+            
+            if (updated) {
+                adventurer = adventurerRepository.save(adventurer);
+                logger.info("Adventurer atualizado - Email: {}", email);
+            } else {
+                logger.info("Adventurer já existe e está atualizado - Email: {}", email);
+            }
         }
         return adventurer;
     }

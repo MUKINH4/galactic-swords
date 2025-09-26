@@ -1,9 +1,4 @@
 <div th:fragment="header(adventurer)" th:object="${adventurer}">
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-        <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
-    </head>
     <header>
         <nav>
             <div th:if="${adventurer == null}" class="flex items-center justify-between p-4 bg-gray-800 text-white">
